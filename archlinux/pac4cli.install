@@ -1,0 +1,13 @@
+post_install() {
+	cd tmp/pac4cli-git
+	make install
+}
+
+post_upgrade() {
+	# detect if the service was enabled/started and restore it's status
+}
+
+post_remove() {
+	opt/pac4cli/uninstall.sh
+    rm -rf opt/pac4cli
+}

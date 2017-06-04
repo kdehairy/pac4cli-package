@@ -1,0 +1,32 @@
+# Maintainer: Your Name <khalid@kdehairy.com>
+pkgname=pac4cli
+pkgver=r27.1d7aa23
+pkgrel=1
+pkgdesc="Proxy-auto-discovery for command line applications"
+arch=('any')
+url="https://github.com/tkluck/pac4cli"
+license=('unknown')
+depends=('python' 'openssl' 'libsystemd' 'python-virtualenv' 'networkmanager')
+makedepends=('git')
+install=${pkgname}.install
+source=("${pkgname%-git}::git+https://github.com/kdehairy/pac4cli.git"
+		"git+https://github.com/pacparser/pacparser.git")
+md5sums=('SKIP' 'SKIP')
+
+pkgver() {
+	cd "$srcdir/${pkgname%-git}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+	cd "$srcdir/${pkgname%-git}/pacparser"
+	git submodule init
+	git submodule update
+}
+
+package() {
+	cd "$srcdir"
+	rm -rf ${pkgname%-git}/.git
+	rm -rf ${pkgname%-git}/pacparser/.git
+	cp -R ${pkgname%-git} $pkgdir/tmp
+}
