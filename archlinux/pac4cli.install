@@ -1,5 +1,5 @@
 post_install() {
-	cd tmp/pac4cli-git
+	cd tmp/pac4cli
 	IS_ENABLED=$(systemctl is-enabled pac4cli 2>/dev/null)
 	IS_ACTIVE=$(systemctl is-active pac4cli 2>/dev/null)
 	if [[ "x$IS_ENABLED" != "x" ]]; then
@@ -12,7 +12,7 @@ post_install() {
 
 post_upgrade() {
 	# detect if the service was enabled/started and restore it's status
-	cd tmp/pac4cli-git
+	cd tmp/pac4cli
 	if [[ -f ".enabled" ]]; then
 		systemctl enable pac4cli
 	fi
@@ -20,7 +20,7 @@ post_upgrade() {
 		systemctl start pac4cli
 	fi
 
-	rm -fr tmp/pac4cli-git
+	rm -fr tmp/pac4cli
 }
 
 post_remove() {
