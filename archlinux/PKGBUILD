@@ -9,7 +9,7 @@ license=('unknown')
 depends=('python' 'openssl' 'libsystemd' 'python-virtualenv' 'networkmanager')
 makedepends=('git')
 install=${pkgname%-git}.install
-source=("${pkgname%-git}::git+https://github.com/kdehairy/pac4cli.git"
+source=("${pkgname%-git}::git+https://github.com/tkluck/pac4cli.git"
 		"git+https://github.com/pacparser/pacparser.git")
 md5sums=('SKIP' 'SKIP')
 
