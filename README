@@ -1,3 +1,9 @@
 Packaging for pac4cli
 
 See https://github.com/tkluck/pac4cli
+
+The package works like this on the target machine:
+- It copies the source code to /tmp/pac4cli
+- Executes make install
+- Removes the /tmp/pac4cli
+- If it is an upgrade, it restores the service status to what it was previously (enabled/started or not)
